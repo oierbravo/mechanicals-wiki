@@ -1,0 +1,50 @@
+---
+title: KubeJS
+---
+
+## Remove al Extruding recipes.
+```js
+ServerEvents.recipes(event => {
+  event.remove({ type: 'create_mechanical_spawner:spawner' })
+})
+```
+
+## All included recipes within a loop.
+> Wither and random recipes are not in the loop.
+```js
+let mobs = [
+  {namespace:"minecraft", entity:"bat", fluidAmount: 100, processingTime:1000},
+  {namespace:"minecraft", entity:"bee", fluidAmount: 100, processingTime:2000},
+  {namespace:"minecraft", entity:"blaze", fluidAmount: 100, processingTime:5000},
+  {namespace:"minecraft", entity:"chicken", fluidAmount: 100, processingTime:1000},
+  {namespace:"minecraft", entity:"cow", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"creeper", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"drowned", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"enderman", fluidAmount: 100, processingTime:5000},
+  {namespace:"minecraft", entity:"evoker", fluidAmount: 100, processingTime:5000},
+  {namespace:"minecraft", entity:"fox", fluidAmount: 100, processingTime:3000},
+  {namespace:"minecraft", entity:"ghast", fluidAmount: 100, processingTime:5000},
+  {namespace:"minecraft", entity:"horse", fluidAmount: 100, processingTime:2000},
+  {namespace:"minecraft", entity:"magma_cube", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"panda", fluidAmount: 100, processingTime:4000},
+  {namespace:"minecraft", entity:"parrot", fluidAmount: 100, processingTime:1500},
+  {namespace:"minecraft", entity:"pig", fluidAmount: 100, processingTime:1500},
+  {namespace:"minecraft", entity:"pigling", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"rabbit", fluidAmount: 100, processingTime:1000},
+  {namespace:"minecraft", entity:"skeleton", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"slime", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"spider", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"villager", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"witch", fluidAmount: 100, processingTime:2500},
+  {namespace:"minecraft", entity:"wither_skeleton", fluidAmount: 100, processingTime:5000},
+  {namespace:"minecraft", entity:"wolf", fluidAmount: 100, processingTime:1500},
+  {namespace:"minecraft", entity:"zombie", fluidAmount: 100, processingTime:2500},
+]
+for (let mob of mobs) {
+  		event.recipes.create_mechanical_spawner.spawner(
+			`${mob.namespace}:${mob.entity}`, Fluid.of(`create_mechanical_spawner:spawn_fluid_${mob.entity}`, 100)
+		)
+		.processingTime(mob.processingTime);
+}
+```
+
