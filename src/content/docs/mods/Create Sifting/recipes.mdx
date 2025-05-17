@@ -1,0 +1,230 @@
+---
+title: Recipes
+sidebar:
+  order: 1
+---
+import { CodeVariants } from '../../../../components';
+
+> Recipes with same mesh and input block gets merged allowing easier compat.
+
+## Individual Parts
+### Mesh
+```json
+{
+  "mesh": {
+    "count": 1,
+    "id": "createsifter:sturdy_mesh"
+  },
+},
+```
+### Processing time
+<CodeVariants
+	json={
+		`
+		  "processingTime": 500,
+		`
+	}
+	kube={
+		`
+		.processingTime(500)
+		`
+	}
+
+/>
+### Waterlogged (optional)
+- Recipe requires brass sifter.
+
+<CodeVariants
+	json={
+		`
+		"waterlogged": "true"
+		`
+	}
+	kube={
+		`
+		.waterlogged(true)
+		`
+	}
+
+ />
+
+### Advanced sifter (brass) per recipe (optional)
+- Recipe requires brass sifter.
+
+<CodeVariants
+	json={
+		`
+		"advancedSifter": "true"
+		`
+	}
+	kube={
+		`
+		.advancedSifter(true)
+		`
+	}
+
+ />
+
+### Recipe Requirements
+> See [Mechianicals Recipe Requirements](/mods/mechanicals-lib/recipe-requirements/)
+
+### Compact recipes.
+#### Current mods:
+  - EnderIO
+  - Ars nouveau
+  - AE2
+
+## Examples
+### Basic
+<CodeVariants
+	json={
+		`
+		{
+			"type": "createsifter:sifting",
+			"input": {
+				"item": "createsifter:dust"
+			},
+			"mesh": {
+				"count": 1,
+				"id": "createsifter:andesite_mesh"
+			},
+			"processingTime": 500,
+			"results": [
+				{
+					"chance": 0.2,
+					"count": 2,
+					"id": "minecraft:redstone"
+				},
+				{
+					"chance": 0.1,
+					"id": "minecraft:glowstone_dust"
+				},
+				{
+					"chance": 0.4,
+					"id": "minecraft:bone_meal"
+				},
+				{
+					"chance": 0.01,
+					"id": "minecraft:blaze_powder"
+				},
+				{
+					"chance": 0.2,
+					"id": "create:experience_nugget"
+				}
+			]
+		}
+		`
+	}
+	kube={
+		`
+			event.recipes.createsifter.sifting(
+				[
+					Output.of('2xminecraft:redstone',0.2),
+					Output.of('minecraft:glowstone_dust',0.1),
+					Output.of('minecraft:bone_meal',0.4),
+					Output.of('minecraft:blaze_powder',0.01),
+					Output.of('create:experience_nugget',0.2),
+				],'createsifter:dust',"createsifter:andesite_mesh"),
+		`
+	}
+
+/>
+### Waterlogged
+<CodeVariants
+	json={
+		`{
+			"type": "createsifter:sifting",
+			"input": {
+				"item": "minecraft:dirt"
+			},
+			"mesh": {
+				"count": 1,
+				"id": "createsifter:string_mesh"
+			},
+			"processingTime": 500,
+			"results": [
+				{
+					"chance": 0.3,
+					"id": "minecraft:kelp"
+				},
+				{
+					"chance": 0.2,
+					"id": "minecraft:seagrass"
+				},
+				{
+					"chance": 0.05,
+					"id": "minecraft:tube_coral"
+				},
+				{
+					"chance": 0.05,
+					"id": "minecraft:brain_coral"
+				},
+				{
+					"chance": 0.05,
+					"id": "minecraft:bubble_coral"
+				},
+				{
+					"chance": 0.05,
+					"id": "minecraft:fire_coral"
+				},
+				{
+					"chance": 0.05,
+					"id": "minecraft:horn_coral"
+				}
+			],
+			"waterlogged": true
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.createsifter.sifting(
+				[
+					Output.of('minecraft:kelp',0.3),
+					Output.of('minecraft:seagrass',0.2),
+					Output.of('minecraft:tube_coral',0.05),
+					Output.of('minecraft:brain_coral',0.05),
+					Output.of('minecraft:bubble_coral',0.05),
+					Output.of('minecraft:fire_coral',0.05),
+					Output.of('minecraft:horn_coral',0.05),
+				],'minecraft:dirt',"createsifter:string_mesh")
+				.waterlogged(true)
+		`
+	}
+
+/>
+### Advanced sifter
+<CodeVariants
+	json={
+		`
+		{
+			"type": "createsifter:sifting",
+			"input": {
+				"item": "minecraft:red_sand"
+			},
+			"mesh": {
+				"count": 1,
+				"id": "createsifter:andesite_mesh"
+			},
+			"processingTime": 500,
+			"results": [
+				{
+				"chance": 0.5,
+				"id": "minecraft:gold_nugget"
+				}
+			],
+			"advancedSifter": true
+			}
+		`
+	}
+	kube={
+		`
+			event.recipes.createsifter.sifting(
+				[
+					Output.of('minecraft:gold_nugget',0.5),
+				],'minecraft:red_sand',"createsifter:andesite_mesh")
+				.advancedSifter(true)
+		`
+	}
+
+/>

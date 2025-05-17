@@ -1,0 +1,36 @@
+---
+title: KubeJS
+sidebar:
+  order: 2
+---
+
+## Remove al sifting recipes.
+```js
+ServerEvents.recipes(event => {
+  event.remove({ type: 'createsifting:sifting' })
+})
+```
+
+### Custom meshes
+- Texture location (for this examples): `kubejs/assets/kubejs/textures/item/diamond_mesh.png`
+
+```js
+StartupEvents.registry('item', event => {
+    
+    //Basic mesh
+	event.create('diamond_mesh','createsifter:mesh')
+      .displayName('Diamond Mesh')
+      .parentModel("createsifter:block/meshes/mesh")
+      .texture("mesh","kubejs:item/diamond_mesh")
+      .maxDamage(77) //Mesh durability
+	
+	//Advanced mesh
+	event.create('advanced_diamond_mesh','createsifter:advanced_mesh')
+      .displayName('Advanced Diamond Mesh')
+      .parentModel("createsifter:block/meshes/mesh")
+      .texture("mesh","kubejs:item/diamond_mesh")
+      .texture("frame","micraft:block/diamond_block")
+      .maxDamage(200) //Mesh durability
+	
+})
+```
