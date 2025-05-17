@@ -1,0 +1,746 @@
+---
+title: Included recipes
+---
+import { CodeVariants } from '../../../../components';
+
+### Andesite
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:min_y",
+				"value": 0
+				},
+				{
+				"type": "mechanicals:max_y",
+				"value": 60
+				}
+			],
+			"result": {
+				"id": "minecraft:andesite"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:andesite'),[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')])
+            .requirements(
+                [
+                    RecipeRequirement.minY(0),
+                    RecipeRequirement.maxY(60),
+                ]
+    	    );
+		`
+	}
+
+ />
+### Asurine
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:lapis_block"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"result": {
+				"id": "create:asurine"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+			Item.of('create:asurine'),
+			[BlockPredicate.of('minecraft:lapis_block'),BlockPredicate.of('minecraft:lava')])
+
+		`
+	}
+
+ />
+### Basalt
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:blue_ice"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"catalyst": {
+				"blocks": "minecraft:soul_soil"
+			},
+			"result": {
+				"id": "minecraft:basalt"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:basalt'),
+				[BlockPredicate.of('minecraft:blue_ice'),BlockPredicate.of('minecraft:lava')]
+			)
+    	    .catalyst('minecraft:soul_soil')
+		`
+	}
+
+ />
+### Cobblestone
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"result": {
+				"id": "minecraft:cobblestone"
+			}
+		}
+		`
+	}
+	kube={
+		`
+        event.recipes.create_mechanical_extruder.extruding(
+			Item.of('minecraft:cobblestone'),
+			[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')]
+		)
+
+		`
+	}
+
+ />
+### Crimsite
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:iron_block"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"catalyst": {
+				"blocks": "minecraft:soul_soil"
+			},
+			"result": {
+				"id": "create:crimsite"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('create:crimsite'),
+				[BlockPredicate.of('minecraft:iron_block'),BlockPredicate.of('minecraft:lava')]
+			)
+    	    .catalyst('minecraft:soul_soil')
+		`
+	}
+
+ />
+### Deepslate
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:max_y",
+				"value": 0
+				},
+				{
+				"type": "mechanicals:max_speed",
+				"value": 16.0
+				}
+			],
+			"result": {
+				"id": "minecraft:deepslate"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:deepslate'),[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')])
+            .requirements(
+                [
+                    RecipeRequirement.maxY(0),
+					RecipeRequirement.maxSpeed(16.0),
+                ]
+    	    );
+		`
+	}
+
+ />
+### Diorite
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:min_y",
+				"value": 0
+				},
+				{
+				"type": "mechanicals:max_y",
+				"value": 60
+				}
+			],
+			"result": {
+				"id": "minecraft:diorite"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:diorite'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')]
+			)
+			.requirements(
+				[
+					RecipeRequirement.minY(0),
+					RecipeRequirement.maxY(60),
+				]
+			);
+		`
+	}
+
+ />
+### End stone
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:blue_ice"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:biome_tag",
+				"value": "minecraft:is_end"
+				}
+			],
+			"result": {
+				"id": "minecraft:end_stone"
+			}
+		}
+		`
+	}
+	kube={
+		`
+        event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:end_stone'),[BlockPredicate.of('minecraft:blue_ice'),BlockPredicate.of('minecraft:lava')])
+            .requirements(
+                [
+            	    RecipeRequirement.biomeTag("minecraft:biome_tag")
+                ]
+            );
+		`
+	}
+
+ />
+### Granite
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:min_y",
+				"value": 0
+				},
+				{
+				"type": "mechanicals:max_y",
+				"value": 60
+				}
+			],
+			"result": {
+				"id": "minecraft:granite"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:granite'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')]
+			)
+			.requirements(
+				[
+					RecipeRequirement.minY(0),
+					RecipeRequirement.maxY(60),
+				]
+			);
+		`
+	}
+
+ />
+### Limestone
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "create:honey"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"result": {
+				"id": "create:limestone"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('create:limestone'),
+				[BlockPredicate.of('create:honey'),BlockPredicate.of('minecraft:lava')]
+			)
+		`
+	}
+
+ />
+### Netherack
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:blue_ice"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:biome_tag",
+				"value": "minecraft:is_nether"
+				}
+			],
+			"result": {
+				"id": "minecraft:netherrack"
+			}
+		}
+		`
+	}
+	kube={
+		`
+        event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:netherrack'),
+				[BlockPredicate.of('minecraft:blue_ice'),BlockPredicate.of('minecraft:lava')]
+			)
+            .requirements(
+                [
+            	    RecipeRequirement.biomeTag("minecraft:is_nether")
+                ]
+            );
+		`
+	}
+
+ />
+### Obsidian
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:max_speed",
+				"value": 4.0
+				}
+			],
+			"result": {
+				"id": "minecraft:obsidian"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:obsidian'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')]
+			)
+            .requirements(
+                [
+					RecipeRequirement.maxSpeed(4.0),
+                ]
+    	    );
+		`
+	}
+
+ />
+### Ochrum
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:gold_block"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"result": {
+				"id": "create:ochrum"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('create:ochrum'),
+				[BlockPredicate.of('minecraft:gold_block'),BlockPredicate.of('minecraft:lava')]
+			)
+		`
+	}
+
+ />
+### Sandstone
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:sand"
+				}
+			},
+			"result": {
+				"id": "minecraft:sandstone"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:sandstone'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:sand')]
+			)
+		`
+	}
+
+ />
+### Scoria
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:lava"
+				},
+				"second": {
+				"blocks": "create:chocolate"
+				}
+			},
+			"result": {
+				"id": "create:scoria"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('create:scoria'),
+				[BlockPredicate.of('minecraft:lava'),BlockPredicate.of('create:chocolate')]
+			)
+		`
+	}
+
+ />
+### Snow block
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:water"
+				}
+			},
+			"requirements": [
+				{
+				"type": "mechanicals:min_y",
+				"value": 150
+				}
+			],
+			"result": {
+				"id": "minecraft:snow_block"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:snow_block'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:water')]
+			)
+            .requirements(
+                [
+					RecipeRequirement.minY(150),
+                ]
+    	    );
+		`
+	}
+
+ />
+### Veridium
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:prismarine"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"result": {
+				"id": "create:veridium"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('create:veridium'),
+				[BlockPredicate.of('minecraft:prismarine'),BlockPredicate.of('minecraft:lava')]
+			)
+		`
+	}
+
+ />
+### Advanced end stone
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"advanced": true,
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:blue_ice"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"catalyst": {
+				"blocks": "minecraft:end_stone"
+			},
+			"consumeBlocks": {
+				"first": false,
+				"second": true
+			},
+			"result": {
+				"id": "minecraft:end_stone"
+			}
+		}
+		`
+	}
+	kube={
+		`
+        event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:end_stone'),
+				[BlockPredicate.of('minecraft:blue_ice'),BlockPredicate.of('minecraft:lava')]
+			)
+            .catalyst(BlockPredicate.of("minecraft:end_stone"))
+            .consumeBlocks([false,true])
+            .advanced(true)
+		`
+	}
+
+ />
+### Advanced netherrack
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"advanced": true,
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:blue_ice"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"catalyst": {
+				"blocks": "minecraft:netherrack"
+			},
+			"consumeBlocks": {
+				"first": false,
+				"second": true
+			},
+			"result": {
+				"id": "minecraft:netherrack"
+			}
+		}
+		`
+	}
+	kube={
+		`
+        event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:netherrack'),
+				[BlockPredicate.of('minecraft:blue_ice'),BlockPredicate.of('minecraft:lava')]
+			)
+            .catalyst(BlockPredicate.of("minecraft:netherrack"))
+            .consumeBlocks([false,true])
+            .advanced(true)
+		`
+	}
+
+ />
+### Advanced obsidian
+<CodeVariants
+	json={
+		`
+		{
+			"type": "create_mechanical_extruder:extruding",
+			"advanced": true,
+			"blockIngredients": {
+				"first": {
+				"blocks": "minecraft:water"
+				},
+				"second": {
+				"blocks": "minecraft:lava"
+				}
+			},
+			"catalyst": {
+				"blocks": "minecraft:obsidian"
+			},
+			"consumeBlocks": {
+				"first": false,
+				"second": true
+			},
+			"result": {
+				"id": "minecraft:obsidian"
+			}
+		}
+		`
+	}
+	kube={
+		`
+		event.recipes.create_mechanical_extruder.extruding(
+				Item.of('minecraft:obsidian'),
+				[BlockPredicate.of('minecraft:water'),BlockPredicate.of('minecraft:lava')]
+			)
+			.catalyst(BlockPredicate.of("minecraft:netherrack"))
+			.consumeBlocks([false,true])
+			.advanced(true)
+		`
+	}
+
+ />

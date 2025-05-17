@@ -6,21 +6,20 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'Mechanicals Wiki',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/oierbravo/mechanicals-wiki',
 			},
 			sidebar: [
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+					label: 'Mods',
+					autogenerate: { directory: 'mods' },
+
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Examples',
+					autogenerate: { directory: 'examples' },
+
 				},
 			],
 		}),

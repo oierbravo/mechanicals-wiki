@@ -1,0 +1,168 @@
+---
+title: Recipe Requirements
+description: Common property for all recipes.
+---
+import { CodeVariants } from '../../../../components';
+
+
+> Many mechanical recipes include this feature.
+## Mods/recipes
+| Mod | type |
+| --- | --- |
+| createsifter | sifting |
+| create_mechanical_extruder | extruding |
+| create_mechanical_spawner | spawner |
+| trading_station | trading |
+
+
+## Examples
+### MinY/MaxY
+<CodeVariants
+	json={
+		`
+		"requirements": [
+			{
+				"type": "mechanicals:min_y",
+				"value": 0
+			},
+			{
+				"type": "mechanicals:max_y",
+				"value": 60
+			}
+		],
+		`
+	}
+	kube={
+		`
+		.requirements(
+			[
+				RecipeRequirement.minY(-10),
+				RecipeRequirement.maxY(12),
+			]
+		);
+		`
+
+	}
+
+/>
+### MinSpeed/MaxSpeed
+<CodeVariants
+	json={
+		`
+		"requirements": [
+			{
+				"type": "mechanicals:min_speed",
+				"value": 8.0
+			},
+			{
+				"type": "mechanicals:max_speed",
+				"value": 16.0
+			}
+		],
+		`
+	}
+	kube={
+		`
+		.requirements(
+			[
+				RecipeRequirement.minSpeed(8.0),
+				RecipeRequirement.maxSpeed(16.0),
+			]
+		),
+		`
+
+	}
+
+/>
+### Biome requirement
+
+<CodeVariants
+	json={
+		`
+		"requirements": [
+			{
+				"type": "mechanicals:biome",
+				"value": "minecraft:plains"
+			}
+		],
+		`
+	}
+	kube={
+		`
+		.requirements(
+			[
+				RecipeRequirement.biome("minecraft:plains")
+			]
+		);
+		`
+
+	}
+
+/>
+### Biome Tag requirement
+<CodeVariants
+	json={
+		`
+		"requirements": [
+			{
+				"type": "mechanicals:biome_tag",
+				"value": "minecraft:is_nether"
+			}
+		],
+		`
+	}
+	kube={
+		`
+		.requirements(
+			[
+				RecipeRequirement.biomeTag("minecraft:is_nether")
+			]
+		);
+		`
+	}
+
+/>
+
+### All requirements together
+<CodeVariants
+	json={
+		`
+		"requirements": [
+			{
+				"type": "mechanicals:min_speed",
+				"value": 8.0
+			},
+			{
+				"type": "mechanicals:max_speed",
+				"value": 16.0
+			},
+			{
+				"type": "mechanicals:min_y",
+				"value": -10
+			},
+			{
+				"type": "mechanicals:max_y",
+				"value": 20
+			},
+			{
+				"type": "mechanicals:biome_tag",
+				"value": "minecraft:is_nether"
+			}
+		],
+		`
+	}
+	kube={
+		`
+		.requirements(
+			[
+				RecipeRequirement.minSpeed(8.0),
+				RecipeRequirement.maxSpeed(16.0),
+				RecipeRequirement.minY(-10),
+				RecipeRequirement.maxY(20),
+				RecipeRequirement.biomeTag("minecraft:is_nether")
+			]
+		);
+		`
+	}
+
+/>

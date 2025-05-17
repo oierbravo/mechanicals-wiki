@@ -1,0 +1,734 @@
+---
+title: Recipes
+---
+import { CodeVariants } from '../../../../components';
+
+## Individual Parts
+### BlockState
+#### Block
+```json
+{
+        "blocks": "minecraft:water"
+},
+```
+#### Block with State
+```json
+{
+  "blocks": "minecraft:furnace",
+  "state": {
+    "lit": "true"
+  }
+}
+```
+
+### Input BlockStates
+<CodeVariants
+	json={
+		`
+		"blockIngredients": {
+        "first": {
+            "blocks": "minecraft:water"
+        },
+        "second": {
+            "blocks": "minecraft:lava"
+        }
+    }
+		`
+	}
+	kube={
+		`
+		[BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+		`
+	}
+
+/>
+### Catalyst BlockStates
+<CodeVariants
+	json={
+		`
+		"catalyst": {
+      "blocks": "minecraft:obsidian"
+    }
+		`
+	}
+	kube={
+		`
+		.catalyst('minecraft:obsidian')
+		`
+	}
+
+/>
+### Required bonks (optional)
+- Defines how many times must hit.
+
+<CodeVariants
+	json={
+		`
+		"requiredBonks": 10
+		`
+	}
+	kube={
+		`
+		[BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+		`
+	}
+
+/>
+
+
+### Advanced extruder (brass) per recipe (optional)
+- Recipe requires brass extruder.
+
+<CodeVariants
+	json={
+		`
+		"advanced": "true"
+		`
+	}
+	kube={
+		`
+		.advanced(true)
+		`
+	}
+
+ />
+
+### Consume blocks (advanced recipe)
+- Advanced extruder can consume blocks.
+- `first` and `second` matches `blockIngredients`.
+
+<CodeVariants
+	json={
+		`
+		"consumeBlocks": {
+        "first": false,
+        "second": true
+    },
+		`
+	}
+	kube={
+		`
+		.consumeBlocks([true,false])
+		`
+	}
+
+ />
+## Examples
+### Minimal
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:redstone_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:lava"
+        },
+        "second": {
+          "blocks": "minecraft:stone"
+        }
+      }
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:redstone_block'),
+        [BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+      )
+		`
+	}
+
+ />
+
+### Catalyst
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:dirt"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:lava"
+        },
+        "second": {
+          "blocks": "minecraft:stone"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:clay"
+      }
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:dirt'),
+        [BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+      )
+      .catalyst('minecraft:clay')
+		`
+	}
+
+ />
+### Bonks
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:sand"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:lava"
+        },
+        "second": {
+          "blocks": "minecraft:stone"
+        }
+      },
+      "requiredBonks": 10
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:sand'),
+        [BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+      )
+      .requiredBonks(10)
+		`
+	}
+
+ />
+### Chanced output
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:red_sand",
+        "chance": 0.5
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:lava"
+        },
+        "second": {
+          "blocks": "minecraft:stone"
+        }
+      }
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Output.of('minecraft:red_sand',0.5),
+        [BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+      )
+		`
+	}
+
+ />
+### Chanced output & bonks
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:birch_planks",
+        "chance": 0.5
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:lava"
+        },
+        "second": {
+          "blocks": "minecraft:stone"
+        }
+      },
+      "requiredBonks": 5
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Output.of('minecraft:birch_planks',0.5),
+        [BlockPredicate.of('minecraft:lava'),BlockPredicate.of('minecraft:stone')]
+      )
+      .requiredBonks(5)
+		`
+	}
+
+ />
+### Advanced extruder
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:obsidian"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "advanced": true
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:obsidian'),
+        [BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]
+      )
+      .catalyst(BlockPredicate.of("minecraft:dirt"))
+      .advanced(true)
+		`
+	}
+
+ />
+### Advanced extruder + consume both blocks
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:birch_planks"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "advanced": true,
+      "consumeBlocks": {
+        "first": true,
+        "second": true
+      }
+    }
+
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:birch_planks'),
+        [BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]
+      )
+      .catalyst(BlockPredicate.of("minecraft:dirt"))
+      .consumeBlocks(true)
+      .advanced(true)
+		`
+	}
+
+ />
+### Advanced extruder + consume different blocks
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:obsidian"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "advanced": true,
+      "consumeBlocks": {
+        "first": true,
+        "second": false
+      }
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder
+      .extruding(
+        Item.of('minecraft:obsidian'),
+        [BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]
+      )
+      .catalyst(BlockPredicate.of("minecraft:dirt"))
+      .consumeBlocks([true,false])
+      .advanced(true)
+		`
+	}
+
+ />
+
+### MinSpeed & MaxSpeed requirement
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:dirt"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "requirements": [
+        {
+          "value": 1.0,
+          "type": "mechanicals:min_speed"
+        },
+        {
+          "value": 16.0,
+          "type": "mechanicals:max_speed"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:dirt'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]).catalyst(BlockPredicate.of("minecraft:dirt"))
+      .requirements(
+            [
+                RecipeRequirement.minSpeed(1.0),
+                RecipeRequirement.maxSpeed(16.0),
+            ]
+        );
+		`
+	}
+ />
+### MinY & MaxY requirement
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:coal_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "requirements": [
+        {
+          "value": -10,
+          "type": "mechanicals:min_y"
+        },
+        {
+          "value": 12,
+          "type": "mechanicals:max_y"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:coal_block'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]).catalyst(BlockPredicate.of("minecraft:dirt"))
+        .requirements(
+            [
+                RecipeRequirement.minY(-10),
+                RecipeRequirement.maxY(12),
+            ]
+      );
+		`
+	}
+ />
+
+### Biome requirement
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:iron_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "requirements": [
+        {
+          "value": "minecraft:plains",
+          "type": "mechanicals:biome"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:iron_block'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]).catalyst(BlockPredicate.of("minecraft:dirt"))
+        .requirements(
+            [
+                RecipeRequirement.biome("minecraft:plains")
+            ]
+        );
+		`
+	}
+ />
+### Biome Tag requirement
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:gold_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "requirements": [
+        {
+          "value": "minecraft:is_nether",
+          "type": "mechanicals:biome_tag"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:gold_block'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]).catalyst(BlockPredicate.of("minecraft:dirt"))
+      .requirements(
+          [
+            RecipeRequirement.biomeTag("minecraft:is_nether")
+          ]
+      );
+		`
+	}
+ />
+### All requirements together
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:emerald_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "requirements": [
+        {
+          "value": 6.0,
+          "type": "mechanicals:min_speed"
+        },
+        {
+          "value": 16.0,
+          "type": "mechanicals:max_speed"
+        },
+        {
+          "value": 10,
+          "type": "mechanicals:min_y"
+        },
+        {
+          "value": 12,
+          "type": "mechanicals:max_y"
+        },
+        {
+          "value": "minecraft:is_nether",
+          "type": "mechanicals:biome_tag"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:emerald_block'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')]).catalyst(BlockPredicate.of("minecraft:dirt"))
+    .requirements(
+        [
+            RecipeRequirement.minSpeed(6.0),
+            RecipeRequirement.maxSpeed(16.0),
+            RecipeRequirement.minY(10),
+            RecipeRequirement.maxY(12),
+            RecipeRequirement.biomeTag("minecraft:is_nether")
+
+        ]
+    );
+		`
+	}
+ />
+### Everything together
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:emerald_block"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:sand"
+        },
+        "second": {
+          "blocks": "minecraft:gravel"
+        }
+      },
+      "catalyst": {
+        "blocks": "minecraft:dirt"
+      },
+      "advanced": true,
+      "consumeBlocks": {
+        "first": true,
+        "second": true
+      },
+      "requirements": [
+        {
+          "value": 16.0,
+          "type": "mechanicals:min_speed"
+        },
+        {
+          "value": 10,
+          "type": "mechanicals:min_y"
+        },
+        {
+          "value": 12,
+          "type": "mechanicals:max_y"
+        },
+        {
+          "value": "minecraft:is_nether",
+          "type": "mechanicals:biome_tag"
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+    event.recipes.create_mechanical_extruder.extruding(Item.of('minecraft:emerald_block'),[BlockPredicate.of('minecraft:sand'),BlockPredicate.of('minecraft:gravel')])
+      .catalyst(BlockPredicate.of("minecraft:dirt"))
+      .advanced(true)
+      .consumeBlocks(true)
+      .requirements(
+        [
+            RecipeRequirement.minSpeed(16.0),
+            RecipeRequirement.minY(10),
+            RecipeRequirement.maxY(12),
+            RecipeRequirement.biomeTag("minecraft:is_nether")
+
+        ]
+      );
+		`
+	}
+ />
+
+### Funny things
+<CodeVariants
+	json={
+		`
+    {
+      "type": "create_mechanical_extruder:extruding",
+      "result": {
+        "id": "minecraft:glowstone"
+      },
+      "blockIngredients": {
+        "first": {
+          "blocks": "minecraft:potted_dandelion"
+        },
+        "second": {
+          "blocks": "minecraft:potted_poppy"
+        }
+      }
+    }
+		`
+	}
+	kube={
+		`
+    // Flower pots
+    event.recipes.create_mechanical_extruder.extruding(
+      Item.of('minecraft:glowstone'),
+      [BlockPredicate.of('minecraft:potted_dandelion'),BlockPredicate.of('minecraft:potted_poppy')]
+    )
+		`
+	}
+ />
+
+

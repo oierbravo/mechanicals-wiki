@@ -1,0 +1,23 @@
+---
+import { Code, TabItem, Tabs } from '@astrojs/starlight/components'
+
+type Props = {
+	json: string
+	kube: string
+}
+
+const { json, kube, ...otherProps } = Astro.props
+---
+
+<Tabs>
+	{json &&
+		<TabItem label="JSON">
+			<Code code={json} {...otherProps} lang="json"/>
+		</TabItem>
+	}
+	{kube &&
+		<TabItem label="KubeJs">
+			<Code code={kube} {...otherProps} lang="js" />
+		</TabItem>
+	}
+</Tabs>
