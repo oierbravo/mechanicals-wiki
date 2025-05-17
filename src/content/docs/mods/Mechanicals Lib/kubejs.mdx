@@ -1,0 +1,25 @@
+---
+title: KubeJS
+---
+
+```
+## Bindings
+### Chanced output
+```js
+Output.of('minecraft:clay', 0.5)
+Output.of('4xminecraft:clay', 0.5)
+```
+### BlockPredicate
+```js
+BlockPredicate.of('minecraft:sand')
+```
+
+### RecipeRequirement
+```js
+RecipeRequirement.minY(int) //ex: RecipeRequirement.minY(-10)
+RecipeRequirement.maxY(int) //ex: RecipeRequirement.maxY(20)
+RecipeRequirement.minSpeed(float) //ex: RecipeRequirement.minSpeed(2.0)
+RecipeRequirement.maxSpeed(float) //ex: RecipeRequirement.maxSpeed(160)
+RecipeRequirement.biome(string) //ex: RecipeRequirement.biome("minecraft:plains")
+RecipeRequirement.maxSpeed(string)  //ex: RecipeRequirement.biome("minecraft:plains")
+```
