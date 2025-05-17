@@ -15,12 +15,7 @@ export default defineConfig({
 					label: 'Mods',
 					autogenerate: { directory: 'mods' },
 
-				},
-				{
-					label: 'Examples',
-					autogenerate: { directory: 'examples' },
-
-				},
+				}
 			],
 		}),
 	],
