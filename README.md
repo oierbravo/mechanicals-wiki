@@ -1,2 +1,2 @@
 # Mechanicals Wiki
-- [Link](https://wiki.mechanicalmod.net)
+- [Link](https://wiki.mechanicalmods.net)
