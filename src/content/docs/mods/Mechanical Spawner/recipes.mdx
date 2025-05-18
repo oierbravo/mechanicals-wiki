@@ -3,6 +3,7 @@ title: Recipes
 sidebar:
   order: 1
 ---
+import { CodeVariants } from '../../../../components';
 
 ## Individual Parts
 ### Recipe Type
@@ -23,12 +24,49 @@ sidebar:
 ```
 
 ### Processing time
-```json
-  "processingTime": 1000
-```
-### customLoot
-```json
-  ToDo
-```
+<CodeVariants
+	json={
+		`
+		"processingTime": 2000
+		`
+	}
+	kube={
+		`
+		.processingTime(2000)
+		`
+	}
+
+/>
+### Custom Loot (for loot collectors)
+<CodeVariants
+	json={
+		`
+		"customLoot": [
+      {
+        "id": "minecraft:nether_star"
+      },
+      {
+        "count": 16,
+        "id": "create:experience_nugget"
+      },
+      {
+        "chance": 0.5,
+        "count": 8,
+        "id": "create:experience_nugget"
+      }
+    ],
+		`
+	}
+	kube={
+		`
+		.customLoot([
+      Item.of("minecraft:nether_star"),
+      Output.of("16x create:experience_nugget"),
+      Output.of("8x create:experience_nugget",0.5)
+    ])
+		`
+	}
+
+/>
 ### Recipe Requirements
 > See [Mechianicals Recipe Requirements](/mods/mechanicals-lib/recipe-requirements/)
