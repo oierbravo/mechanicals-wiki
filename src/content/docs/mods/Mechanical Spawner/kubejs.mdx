@@ -4,11 +4,13 @@ sidebar:
   order: 2
 ---
 
-## Remove al Spawner recipes.
+### Remove all included recipes:
 ```js
-ServerEvents.recipes(event => {
-  event.remove({ type: 'create_mechanical_spawner:spawner' })
-})
+event.remove({ type: 'create_mechanical_spawner:spawner' })
+```
+### Remove specific mob recipes:
+```js
+event.remove({id:"create_mechanical_spawner:spawner/skeleton"})
 ```
 
 ## All included recipes within a loop.
