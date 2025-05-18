@@ -8,6 +8,8 @@ import { CodeVariants } from '../../../../components';
 > Recipes with same mesh and input block gets merged allowing easier compat.
 
 ## Individual Parts
+### Recipe Type
+`createsifter:sifting`
 ### Mesh
 ```json
 {
@@ -119,7 +121,7 @@ import { CodeVariants } from '../../../../components';
 		`
 			event.recipes.createsifter.sifting(
 				[
-					Output.of('2xminecraft:redstone',0.2),
+					Output.of('2x minecraft:redstone',0.2),
 					Output.of('minecraft:glowstone_dust',0.1),
 					Output.of('minecraft:bone_meal',0.4),
 					Output.of('minecraft:blaze_powder',0.01),
