@@ -1,0 +1,212 @@
+---
+title: Recipe Examples
+sidebar:
+  order: 4
+---
+import { CodeVariants } from '../../../../components';
+
+### One ingredient
+
+<CodeVariants
+	json={
+		`
+    {
+      "type": "trading_station:trading",
+      "result": {
+        "id": "minecraft:diamond",
+        "count": 5
+      },
+      "ingredients": [
+        {
+          "ingredient": {
+            "item": "minecraft:emerald"
+          },
+          "count": 5
+        }
+      ]
+    }
+		`
+	}
+	kube={
+		`
+		event.recipes.trading_station.trading(
+        Item.of("5x minecraft:emerald"),
+        [Item.of("5x minecraft:diamond")]
+      );
+		`
+	}
+ />
+### Two ingredients
+
+<CodeVariants
+	json={
+		`
+{
+  "type": "trading_station:trading",
+  "result": {
+    "id": "minecraft:gold_block",
+    "count": 5
+  },
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:oak_log"
+      },
+      "count": 5
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:birch_log"
+      },
+      "count": 10
+    }
+  ],
+  "processingTime": 250
+}
+		`
+	}
+	kube={
+		`
+		event.recipes.trading_station.trading(
+        Item.of('minecraft:emerald', 5),
+        [Item.of("5x minecraft:oak_log"),Item.of("10x minecraft:birch_log")]
+      )
+      .processingTime(250);
+
+
+		`
+	}
+
+ />
+
+### Enchanted Sword
+
+<CodeVariants
+	json={
+		`
+  {
+    "type": "trading_station:trading",
+    "result": {
+      "id": "minecraft:enchanted_book",
+      "count": 1,
+      "components": {
+        "minecraft:enchantments": {
+          "levels": {
+            "minecraft:sharpness": 3
+          }
+        }
+      }
+    },
+    "ingredients": [
+      {
+        "ingredient": {
+          "item": "minecraft:diamond"
+        },
+        "count": 5
+      }
+    ],
+    "processingTime": 100
+  }
+		`
+	}
+	kube={
+		`
+  event.recipes.trading_station.trading(
+      Item.of('minecraft:diamond_sword[enchantments={levels:{"minecraft:sharpness":1}}]', 1),
+      [Item.of("minecraft:diamond", 5)]
+    )
+    .processingTime(100);
+
+		`
+	}
+
+ />
+
+
+### Enchanted book
+
+<CodeVariants
+	json={
+		`
+  {
+    "type": "trading_station:trading",
+    "result": {
+      "id": "minecraft:enchanted_book",
+      "count": 1,
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:density": 3
+          }
+        }
+      }
+    },
+    "ingredients": [
+      {
+        "ingredient": {
+          "item": "minecraft:diamond"
+        },
+        "count": 5
+      }
+    ],
+    "processingTime": 100
+  }
+		`
+	}
+	kube={
+		`
+  event.recipes.trading_station.trading(
+      Item.of('minecraft:enchanted_book[stored_enchantments={levels:{"minecraft:unbreaking":3}}]', 1),
+      [Item.of("minecraft:diamond", 5)]
+    )
+    .processingTime(100);
+
+		`
+	}
+
+ />
+## Machine Requirement
+
+<CodeVariants
+	json={
+		`
+  {
+    "type": "trading_station:trading",
+    "result": {
+      "id": "minecraft:emerald_block",
+      "count": 1
+    },
+    "ingredients": [
+      {
+        "ingredient": {
+          "item": "minecraft:diamond"
+        },
+        "count": 5
+      }
+    ],
+    "processingTime": 100,
+    "requirements": [
+      {
+        "value": [
+          "powered",
+          "mechanical"
+        ],
+        "type": "trading_station:machine_id"
+      }
+    ]
+  }
+		`
+	}
+	kube={
+		`
+event.recipes.trading_station.trading(
+    Item.of('minecraft:emerald_block'),
+    [Item.of("5x minecraft:diamond")]
+  )
+  .processingTime(100)
+  .requirements(MachineId.of(["powered","mechanical"]));
+
+		`
+	}
+
+ />

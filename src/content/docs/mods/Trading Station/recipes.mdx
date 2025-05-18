@@ -1,0 +1,78 @@
+---
+title: Recipes
+sidebar:
+  order: 1
+---
+import { CodeVariants } from '../../../../components';
+
+## Individual Parts
+### Recipe Type
+ `"trading_station:trading"`
+### Result `result`
+- Output item. Item `components` allowed.
+```json
+"result": {
+  "id": "minecraft:diamond",
+  "count": 5
+},
+```
+### Ingredients `ingredients`
+- Required items. Max 2.
+```json
+"ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:oak_log"
+      },
+      "count": 5
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:birch_log"
+      },
+      "count": 10
+    }
+  ],
+```
+### Processing time `processingTime` (optional)
+- Required time in ticks.
+
+<CodeVariants
+	json={
+		`
+    "processingTime": 200
+		`
+	}
+	kube={
+		`
+		.processingTime(100)
+		`
+	}
+ />
+
+### Recipe Requirements `recipeRequirements`
+- Custom recipe requirements. [WIKI](https://wiki.mechanicalmods.net/mods/mechanicals-lib/recipe-requirements/)
+#### Machine Requirement `MachieneRequirement`
+- Specific requirement provided by this mod.
+
+<CodeVariants
+	json={
+		`
+    "requirements": [
+        {
+          "value": [
+            "powered",
+            "mechanical"
+          ],
+          "type": "trading_station:machine_id"
+        }
+      ]
+		`
+	}
+	kube={
+		`
+		.requirements(MachineId.of(["powered","mechanical"]))
+		`
+	}
+
+ />
