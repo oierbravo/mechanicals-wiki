@@ -1,0 +1,39 @@
+---
+title: Recipes
+sidebar:
+  order: 1
+---
+import { CodeVariants } from '../../../../components';
+
+## Recipe example:
+```
+{
+  "type": "melter:melting",
+  "input": {
+    "tag": "forge:cobblestone",
+    "count": 1
+  },
+  "output": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  },
+  "processingTime": 500
+}
+```
+
+### with Minimum Heat
+```
+{
+  "type": "melter:melting",
+  "input": {
+    "tag": "forge:cobblestone",
+    "count": 1
+  },
+  "output": {
+    "fluid": "minecraft:lava",
+    "amount": 250
+  },
+  "processingTime": 500,
+  "minimumHeat": 8
+}
+```

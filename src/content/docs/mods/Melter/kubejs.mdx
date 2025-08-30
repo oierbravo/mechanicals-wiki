@@ -1,0 +1,12 @@
+---
+title: KubeJS
+sidebar:
+  order: 2
+---
+
+## Remove all melting recipes.
+```js
+ServerEvents.recipes(event => {
+  event.remove({ type: 'melter:melting' })
+})
+```
